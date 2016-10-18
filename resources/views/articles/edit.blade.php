@@ -1,28 +1,29 @@
 @extends('app')
 
 @section('content')
+	<h1>Edit: {!! $article->title !!}</h1>
 
-<h1>Write a New Article</h1>
+	<hr>
+	<form method="PATCH" action="{{action('ArticlesController@update',[$article->id])}}">
 
-<hr>
-<form method="POST" action="{{action('ArticlesController@store')}}">
+
 	{!!csrf_field()!!}
 	<div class="form-group">
 	<label>Title:</label>	
-	<input type="text" name="title" class="form-control">
+	<input type="text" name="title" class="form-control" value="{{$article->title}}">
 
 	</div>
 
 	<div class="form-group">
 	<label>Body:</label>	
-	<textarea class="form-control" rows="3" name="body"></textarea>
+	<textarea class="form-control" rows="3" name="body">{{$article->body}}</textarea>
 
 	</div>
 
 	<div class="form-group">
 		
 		<label>Publish On:</label>
-		<input type="date" name="published_at" value="{{date('Y-m-d')}}">
+		<input type="date" name="published_at" value="{{$article->published_at->toDateString()}}">
 
 	</div>
 
@@ -42,6 +43,4 @@
 
 	</ul>
 @endif
-
-
 @stop
