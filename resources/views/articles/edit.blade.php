@@ -4,8 +4,8 @@
 	<h1>Edit: {!! $article->title !!}</h1>
 
 	<hr>
-	<form method="PATCH" action="{{action('ArticlesController@update',[$article->id])}}">
-
+	<form method="POST" action="{{action('ArticlesController@update',['id'=>$article->id])}}">
+		<input name="_method" type="hidden" value="PATCH">
 
 	{!!csrf_field()!!}
 	<div class="form-group">
@@ -23,24 +23,16 @@
 	<div class="form-group">
 		
 		<label>Publish On:</label>
-		<input type="date" name="published_at" value="{{$article->published_at->toDateString()}}">
+		<input class="form-control" type="date" name="published_at" value="{{$article->published_at->toDateString()}}">
 
 	</div>
 
 	<div class="form-group">	
-	<input type="submit" name="Add Article" class="btn btn-primary form-control">
+	<input type="submit" name="Update Article" class="btn btn-primary form-control">
 	
 	</div>
 
 </form>
 
-@if ($errors->any())
-	<ul class="alert alert-danger">
-		
-		@foreach($errors->all() as $error)
-			<li>{{$error}}</li>
-		@endforeach
-
-	</ul>
-@endif
+@include('errors.list')
 @stop
