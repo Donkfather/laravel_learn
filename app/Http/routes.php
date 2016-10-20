@@ -29,3 +29,8 @@ Route::controllers([
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('foo',['middleware'=>'manager',function()
+{
+	return 'this ipage may only be viewed by managers';
+}]);
