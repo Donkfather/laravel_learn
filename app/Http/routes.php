@@ -23,13 +23,34 @@ Route::controllers([
 		'password' => 'Auth\PasswordController'
 	]);
 
-
-
-
+/**
+* The Auth routes.
+*
+*
+* @param
+* @return Response
+*/
+	
 Route::auth();
+
+/**
+* Route made for dashboard.
+*
+*
+* @param
+* @return Response
+*/
 
 Route::get('/home', 'HomeController@index');
 
+/**
+* Example middleware route.
+* Can be deleted.
+*
+* @param
+* @return Response
+*/
+	
 Route::get('foo',['middleware'=>'manager',function()
 {
 	return 'this ipage may only be viewed by managers';
