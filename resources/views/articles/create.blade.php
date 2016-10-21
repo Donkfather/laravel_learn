@@ -30,8 +30,8 @@
 		
 		<label>Tags:</label>
 		<select class="form-control" multiple="multiple" id="tags" name="tags[]">
-			@foreach($tags as $key => $tag)
-			<option>{{$key}}</option>
+			@foreach($tags as $tag)
+			<option>{{$tag}}</option>
 			@endforeach
 		</select>
 

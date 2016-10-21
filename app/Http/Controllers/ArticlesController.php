@@ -55,7 +55,8 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        $tags = \App\Tag::lists('name','id');
+        $tags = \App\Tag::pluck('name','id')->all();
+
         return view('articles.create',compact('tags'));
     }
 
@@ -70,7 +71,7 @@ class ArticlesController extends Controller
         
     public function store(Requests\ArticleRequest $request)
     {
-        dd($request->input('tags'));
+        dd($request);
 
         $article = Auth::user()->articles()->create($request->all());
 
