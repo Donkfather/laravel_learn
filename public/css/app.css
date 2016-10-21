@@ -5730,13 +5730,8 @@ button.close {
   .hidden-print {
     display: none !important; } }
 
-.home {
+.container {
+  padding-top: 30px;
   color: red; }
-
-body {
-  padding-top: 40px; }
-
-body, label, .checkbox label {
-  font-weight: 300; }
 
 /*# sourceMappingURL=app.css.map */

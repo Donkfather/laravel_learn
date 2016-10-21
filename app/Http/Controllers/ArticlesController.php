@@ -26,7 +26,7 @@ class ArticlesController extends Controller
     public function index()    {
 
 
-    	$articles = Article::latest('published_at')->published()->get();
+    	$articles = Article::latest('created_at')->published()->get();
 
     	return view('articles.index',compact('articles'));
     }
@@ -72,6 +72,8 @@ class ArticlesController extends Controller
         $article = new Article($request->all());
 
         $request->user()->articles()->save($article);
+
+        \Session::flash('flash_message','Your article has been created!');
 
 
         return redirect('articles');
