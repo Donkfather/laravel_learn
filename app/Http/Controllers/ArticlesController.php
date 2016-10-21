@@ -55,12 +55,14 @@ class ArticlesController extends Controller
 
     public function create()
     {
-        return view('articles.create');
+        $tags = \App\Tag::lists('name','id');
+        return view('articles.create',compact('tags'));
     }
 
     /**
     * The store new article method.
-    *
+    * Uses flash messages.
+    * 
     *
     * @param request
     * @return Response redirect
@@ -68,15 +70,16 @@ class ArticlesController extends Controller
         
     public function store(Requests\ArticleRequest $request)
     {
-        //dd($request);
-        $article = new Article($request->all());
+        dd($request->input('tags'));
 
-        $request->user()->articles()->save($article);
+        $article = Auth::user()->articles()->create($request->all());
 
-        \Session::flash('flash_message','Your article has been created!');
+        $article->tags()->attach(array_keys($request->input('tags')));
 
-
-        return redirect('articles');
+        return redirect('articles')->with([
+            'flash_message'=>'Your article has been created!',
+            'flash_message_important'=>true
+            ]);
     }
 
     /**

@@ -22,7 +22,18 @@
 	<div class="form-group">
 		
 		<label>Publish On:</label>
-		<input type="date" name="published_at" value="{{date('Y-m-d')}}">
+		<input class="form-control" type="date" name="published_at" value="{{date('Y-m-d')}}">
+
+	</div>
+
+	<div class="form-group">
+		
+		<label>Tags:</label>
+		<select class="form-control" multiple="multiple" id="tags" name="tags[]">
+			@foreach($tags as $key => $tag)
+			<option>{{$key}}</option>
+			@endforeach
+		</select>
 
 	</div>
 
